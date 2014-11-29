@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/* | tap-spec"
+    "test": "tape test/* | tap-spec",
+    "coverage": "covert test/* | tap-spec"
   },
   "devDependencies": {
+    "covert": "^1.0.1",
     "hapi": "^7.5.2",
     "nock": "^0.51.0",
     "sinon": "^1.12.1",

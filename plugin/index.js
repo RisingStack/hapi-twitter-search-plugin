@@ -1,12 +1,10 @@
 
 var routes = require('./routes');
+var methods = require('./methods');
 
 exports.register = function (plugin, options, next) {
-  plugin.route({
-    method: 'GET',
-    path: '/',
-    handler: routes.search
-  });
+  plugin.route(routes);
+  plugin.method(methods);
 
   next();
 };

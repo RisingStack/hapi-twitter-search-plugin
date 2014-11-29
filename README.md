@@ -2,7 +2,7 @@
 
 ## How to use
 
-## GET /
+### GET /
 GET /?q=nodejs
 
 ### Register as plugin
@@ -21,5 +21,5 @@ server.pack.register({
 ```
 
 ## Test
-`npm test`
+`npm test`  
 `npm run coverage`

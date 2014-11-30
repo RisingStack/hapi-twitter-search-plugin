@@ -1,4 +1,3 @@
-
 var routes = require('./routes');
 var methods = require('./methods');
 

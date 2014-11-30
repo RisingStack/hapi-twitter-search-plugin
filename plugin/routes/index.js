@@ -2,6 +2,7 @@
 * Routes
 */
 
+var joi = require('joi');
 var twitter = require('./twitter');
 
 module.exports = [
@@ -12,6 +13,13 @@ module.exports = [
   {
     method: 'GET',
     path: '/',
-    handler: twitter.search
+    handler: twitter.search,
+    config: {
+      validate: {
+        query: {
+          q: joi.string().min(1)
+        }
+      }
+    }
   }
 ];

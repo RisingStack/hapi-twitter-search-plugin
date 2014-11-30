@@ -6,6 +6,10 @@
     "test": "tape test/* | tap-spec",
     "coverage": "covert test/* | tap-spec"
   },
+  "dependencies": {
+    "joi": "^5.0.0",
+    "node-twitter": "^0.5.2"
+  },
   "devDependencies": {
     "covert": "^1.0.1",
     "hapi": "^7.5.2",
@@ -13,8 +17,5 @@
     "sinon": "^1.12.1",
     "tap-spec": "^2.1.0",
     "tape": "^3.0.3"
-  },
-  "dependencies": {
-    "node-twitter": "^0.5.2"
   }
 }

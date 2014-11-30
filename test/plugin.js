@@ -32,45 +32,63 @@ function mockTwitterSearch () {
   });
 }
 
-test('GET /?q=node', function (t) {
-  nock('https://api.twitter.com:443')
-  .get('/1.1/search/tweets.json?q=node')
-  .once()
-  .reply(200, {
-    statuses: [
-      { created_at: mockedTweets[0].createdAt, text: mockedTweets[0].text },
-      { created_at: mockedTweets[1].createdAt, text: mockedTweets[1].text }
-    ]
+test('plugin', function (p) {
+  p.plan(3);
+
+  p.test('GET /?q=node', function (t) {
+    nock('https://api.twitter.com:443')
+    .get('/1.1/search/tweets.json?q=node')
+    .once()
+    .reply(200, {
+      statuses: [
+        { created_at: mockedTweets[0].createdAt, text: mockedTweets[0].text },
+        { created_at: mockedTweets[1].createdAt, text: mockedTweets[1].text }
+      ]
+    });
+
+    t.plan(2);
+
+    var options = {
+      method: 'GET',
+      url: '/?q=node'
+    };
+
+    server.inject(options, function(res) {
+      t.equal(res.statusCode, 200, 'status code should be 200');
+      t.deepEqual(res.result, { tweets: mockedTweets }, 'result should contain tweets');
+    });
   });
 
-  t.plan(2);
+  p.test('GET /?q=node mocked server method', function (t) {
+    var searchStub = mockTwitterSearch();
 
-  var options = {
-    method: 'GET',
-    url: '/?q=node'
-  };
+    t.plan(3);
 
-  server.inject(options, function(res) {
-    t.equal(res.statusCode, 200, 'status code should be 200');
-    t.deepEqual(res.result, { tweets: mockedTweets }, 'result should contain tweets');
+    var options = {
+      method: 'GET',
+      url: '/?q=mocked'
+    };
+
+    server.inject(options, function(res) {
+      t.equal(searchStub.getCall(0).args[1], 'mocked', 'mocked server method should be called with "node"');
+      t.equal(res.statusCode, 200, 'status code should be 200');
+      t.deepEqual(res.result, { tweets: mockedTweets }, 'result should contain tweets');
+
+      searchStub.restore();
+    });
   });
-});
 
-test('GET /?q=node mocked server method', function (t) {
-  var searchStub = mockTwitterSearch();
+  p.test('GET /?q= should throw validation error', function (t) {
+    t.plan(2);
 
-  t.plan(3);
+    var options = {
+      method: 'GET',
+      url: '/?q='
+    };
 
-  var options = {
-    method: 'GET',
-    url: '/?q=mocked'
-  };
-
-  server.inject(options, function(res) {
-    t.equal(searchStub.getCall(0).args[1], 'mocked', 'mocked server method should be called with "node"');
-    t.equal(res.statusCode, 200, 'status code should be 200');
-    t.deepEqual(res.result, { tweets: mockedTweets }, 'result should contain tweets');
-
-    searchStub.restore();
+    server.inject(options, function(res) {
+      t.equal(res.statusCode, 400, 'status code should be 400');
+      t.deepEqual(JSON.parse(res.payload).message, 'q is not allowed to be empty', 'should tell the problem');
+    });
   });
 });

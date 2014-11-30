@@ -1,4 +1,4 @@
-# hpi-twitter-search-api
+# hapi-twitter-search-plugin
 
 [![Build Status](https://travis-ci.org/RisingStack/hapi-twitter-search-plugin.svg?branch=master)](https://travis-ci.org/RisingStack/hapi-twitter-search-plugin)
 

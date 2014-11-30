@@ -41,7 +41,7 @@ test('methods/twitter', function (m) {
     t.plan(1);
 
     method.search({ foo: 'bar'}, 'wow', function(err, data) {
-      t.deepEqual(err, { code: 215 }, 'err should be existed');
+      t.deepEqual(err, { code: 215 }, 'err should exists');
     });
   });
 });

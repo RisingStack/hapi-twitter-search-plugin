@@ -3,8 +3,6 @@ var sinon = require('sinon');
 
 var route = require('../../plugin/routes/twitter');
 
-
-
 // Mock server method
 function mockRequest () {
   var request = {
@@ -42,7 +40,7 @@ test('routes/twitter', function (r) {
       t.equal(request.server.methods.twitter.search.getCall(0).args[1],
       'foo', 'should call the "twitter.search" server method');
 
-      t.deepEqual(data, { tweets: [1,2,3] }, 'should have result');
+      t.deepEqual(data, { tweets: [1,2,3] }, 'should have results');
     });
   });
 });

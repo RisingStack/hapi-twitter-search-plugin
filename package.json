@@ -1,6 +1,8 @@
 {
-  "name": "hpi-twitter-search-api",
-  "version": "0.0.1",
+  "name": "hapi-twitter-search-plugin",
+  "version": "1.0.0",
+  "author": "Peter Marton, @slashdotpeter",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "tape test/* | tap-spec",

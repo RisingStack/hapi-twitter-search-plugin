@@ -24,7 +24,7 @@ test('methods/twitter', function (m) {
 
     t.plan(2);
 
-    method.search({ foo: 'bar'}, 'wow', function(err, data) {
+    method.search({ foo: 'bar' }, 'wow', function(err, data) {
       t.equal(err, undefined, 'err should be undefined');
       t.deepEqual(data, mockedTweets, 'result should contain tweets');
     });
@@ -35,12 +35,12 @@ test('methods/twitter', function (m) {
     .get('/1.1/search/tweets.json?q=wow')
     .once()
     .reply(215, {
-      errors: [{ message: "Bad Authentication data", code: 215 }]
+      errors: [{ message: 'Bad Authentication data', code: 215 }]
     });
 
     t.plan(1);
 
-    method.search({ foo: 'bar'}, 'wow', function(err, data) {
+    method.search({ foo: 'bar' }, 'wow', function(err, data) {
       t.deepEqual(err, { code: 215 }, 'err should exists');
     });
   });

@@ -13,7 +13,7 @@ function mockRequest () {
       methods: {
         twitter: {
           search: sinon.spy(function (config, query, done) {
-            done(null, [1,2,3]);
+            done(null, [1, 2, 3]);
           })
         }
       },
@@ -40,7 +40,7 @@ test('routes/twitter', function (r) {
       t.equal(request.server.methods.twitter.search.getCall(0).args[1],
       'foo', 'should call the "twitter.search" server method');
 
-      t.deepEqual(data, { tweets: [1,2,3] }, 'should have results');
+      t.deepEqual(data, { tweets: [1, 2, 3] }, 'should have results');
     });
   });
 });

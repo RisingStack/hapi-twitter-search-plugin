@@ -22,7 +22,7 @@ function search (config, query, next) {
   client.search({
     q: query
   }, function(err, result) {
-    if(err) {
+    if (err) {
       return next(err);
     }
 

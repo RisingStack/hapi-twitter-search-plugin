@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "author": "Peter Marton, @slashdotpeter",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RisingStack/hapi-twitter-search-plugin"
+  },
   "main": "index.js",
   "scripts": {
     "test": "tape test/* | tap-spec",

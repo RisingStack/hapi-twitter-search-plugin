@@ -4,8 +4,7 @@
 
 ## How to use
 
-### GET /
-GET /?q=nodejs
+`npm install --save hapi-twitter-search-plugin`
 
 ### Register as plugin
 ``` javascript
@@ -21,6 +20,9 @@ server.pack.register({
   }
 });
 ```
+
+### GET /
+GET /?q=nodejs
 
 ## Test
 `npm test`  

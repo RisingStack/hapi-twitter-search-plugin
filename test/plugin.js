@@ -59,7 +59,7 @@ test('plugin', function (p) {
     });
   });
 
-  p.test('GET /?q=node mocked server method', function (t) {
+  p.test('GET /?q=node with mocked server method', function (t) {
     var searchStub = mockTwitterSearch();
 
     t.plan(3);
@@ -70,7 +70,7 @@ test('plugin', function (p) {
     };
 
     server.inject(options, function(res) {
-      t.equal(searchStub.getCall(0).args[1], 'mocked', 'mocked server method should be called with "node"');
+      t.equal(searchStub.getCall(0).args[1], 'mocked', 'should be called with "node"');
       t.equal(res.statusCode, 200, 'status code should be 200');
       t.deepEqual(res.result, { tweets: mockedTweets }, 'result should contain tweets');
 
@@ -78,7 +78,7 @@ test('plugin', function (p) {
     });
   });
 
-  p.test('GET /?q= should throw validation error', function (t) {
+  p.test('GET /?q=', function (t) {
     t.plan(2);
 
     var options = {
@@ -88,7 +88,7 @@ test('plugin', function (p) {
 
     server.inject(options, function(res) {
       t.equal(res.statusCode, 400, 'status code should be 400');
-      t.deepEqual(JSON.parse(res.payload).message, 'q is not allowed to be empty', 'should tell the problem');
+      t.deepEqual(JSON.parse(res.payload).message, 'q is not allowed to be empty', 'should return with error');
     });
   });
 });

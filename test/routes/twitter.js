@@ -40,7 +40,7 @@ test('routes/twitter', function (r) {
 
     route.search(request, function(data) {
       t.equal(request.server.methods.twitter.search.getCall(0).args[1],
-      'foo', 'should call "twitter.search" server method');
+      'foo', 'should call the "twitter.search" server method');
 
       t.deepEqual(data, { tweets: [1,2,3] }, 'should have result');
     });
